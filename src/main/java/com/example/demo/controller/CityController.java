@@ -13,7 +13,6 @@ import java.rmi.MarshalledObject;
 import java.util.List;
 
 @Controller
-@RequestMapping("/city")
 public class CityController {
     @Autowired
     private ICityService cityService;
@@ -44,13 +43,37 @@ public class CityController {
     public ModelAndView create(){
         ModelAndView modelAndView= new ModelAndView("create");
         modelAndView.addObject("city", new City());
+        modelAndView.addObject("country",countryService.findAll());
         return modelAndView;
     }
+
     @PostMapping("/create")
     public ModelAndView createCity(@ModelAttribute City city){
         ModelAndView modelAndView= new ModelAndView("create");
         cityService.save(city);
         modelAndView.addObject("city", new City());
+        return modelAndView;
+    }
+    @GetMapping("/edit/{id}")
+    public ModelAndView edit(@PathVariable Long id){
+        ModelAndView modelAndView= new ModelAndView("edit");
+        City city = cityService.findById(id).get();
+        modelAndView.addObject("city",city);
+        modelAndView.addObject("country",countryService.findAll());
+        return modelAndView;
+    }
+    @PostMapping("/edit/{id}")
+    public ModelAndView editCity(@ModelAttribute City city){
+        ModelAndView modelAndView= new ModelAndView("edit");
+        cityService.save(city);
+        modelAndView.addObject("city", new City());
+        return modelAndView;
+    }
+    @GetMapping("/delete/{id}")
+    public ModelAndView delete(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("list");
+        cityService.delete(id);
+        modelAndView.addObject("city",cityService.findAll());
         return modelAndView;
     }
 }

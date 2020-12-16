@@ -5,7 +5,8 @@
     <title>Danh sach thanh pho</title>
 </head>
 <body>
-<a href="/city/create">Thêm thành phố</a>
+<a th:href="@{/create}">Thêm thành phố</a>
+
 <table border="1px">
     <caption>DANH SÁCH THÀNH PHỐ</caption>
         <tr>
@@ -18,12 +19,12 @@
         <tr>
             <td th:text="${city.id}"></td>
             <td >
-                <a th:href="@{/city/details/__${city.getId()}__}" ><span th:text="${city.nameCity}"></span></a>
+                <a th:href="@{/details/__${city.getId()}__}" ><span th:text="${city.nameCity}"></span></a>
             </td>
             <td th:text="${city.country.name}"></td>
             <td>
-                <a th:href="@{/city/edit/__${city.getId()}__}">Edit</a>
-                | <a th:href="@{/city/delete/__${city.getId()}__}">Delete</a>
+                <a th:href="@{/edit/__${city.getId()}__}">Edit</a>
+                | <a th:href="@{/delete/__${city.getId()}__}" onclick="return confirm('Are you sure?')">Delete</a>
             </td>
         </tr>
     </th:block>

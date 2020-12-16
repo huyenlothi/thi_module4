@@ -5,6 +5,39 @@
     <title>Title</title>
 </head>
 <body>
+<h2 th:text="'Chỉnh sửa thành phố'+ ${city.nameCity}"></h2>
+<form action="" method="post"  th:object="${city}">
+<table >
+    <tr>
+        <td><label >Tên: </label></td>
+        <td><input type="text" th:field="*{nameCity}" ></td>
+    </tr>
+    <tr>
+        <td><label >Quốc gia: </label></td>
+        <td><select  id="country"  th:field="*{country}" >
+            <option th:each="c:${country}" th:value="${c.id}" th:text="${c.name}"></option>
+        </select></td>
+    </tr>
+    <tr>
+        <td><label >Diện tích: </label></td>
+        <td><input type="text" th:field="*{area}" ></td>
+    </tr>
+    <tr>
+        <td><label >Dân số: </label></td>
+        <td><input type="text" th:field="*{population}" ></td>
+    </tr>
+    <tr>
+        <td><label >GDP: </label></td>
+        <td><input type="text" th:field="*{gdp}" ></td>
+    </tr>
+    <tr>
+        <td><label >Giới thiệu: </label></td>
+        <td><textarea  rows = "10" cols = "80" th:field="*{information}" ></textarea></td>
+    </tr>
 
+</table>
+<input type="submit" value="Cập nhật">
+<a th:href="@{/}">Thoát</a>
+</form>
 </body>
 </html>
