@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Thêm thành phố</h2>
+<form action=""></form>
+<table th:object="${city}">
+    <tr>
+        <td><label >Tên: </label></td>
+        <td><input type="text" th:feild="*{nameCity}"></td>
+    </tr>
+    <tr>
+        <td><label >Quốc gia: </label></td>
+        <td><select  id="country"  th:field="*{country}" >
+            <option th:each="c:${country}" th:value="${c.getId()}" th:text="${c.getname()}"></option>
+        </select></td>
+    </tr>
+    <tr>
+        <td><label >Diện tích: </label></td>
+        <td><input type="text" th:feild="*{area}"></td>
+    </tr>
+    <tr>
+        <td><label >Dân số: </label></td>
+        <td><input type="text" th:feild="*{population}"></td>
+    </tr>
+    <tr>
+        <td><label >GDP: </label></td>
+        <td><input type="text" th:feild="*{gdp}"></td>
+    </tr>
+    <tr>
+        <td><label >Giới thiệu: </label></td>
+        <td><textarea  rows = "10" cols = "80" th:feild="*{information}"/></td>
+    </tr>
+
+</table>
+<input type="submit" value="Nhập thành phố">
+
+</form>
+</body>
+</html>
